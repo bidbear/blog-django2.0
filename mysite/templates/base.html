@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css'%}">
+</head>
+<body>
+    <div class="nav">
+        <a class='logo' href="{% url 'blog:blog_list' %}">个人博客网站</a>
+    
+        <a href="/">首页</a>
+        <a href="{% url 'blog:blog_list' %}">博客</a>
+    
+    </div>
+    <!-- <p style='float: right;'><a href="{% url 'blog:blog_list' %}">博客首页</a></p> -->
+    {% block content %}{% endblock %}
+</body>
+</html>
