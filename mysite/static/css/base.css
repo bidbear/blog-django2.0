@@ -14,10 +14,7 @@ a {
 div a.logo{
     font-size: 120%
 }
-span{
-        font-size: 220%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+
+ul li{
+    list-style-type: none;
 }
