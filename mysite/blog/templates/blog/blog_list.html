@@ -46,11 +46,15 @@
             <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
             {% endif %}
             {# 遍历页码#}
-            {% for num in blogs.paginator.page_range %}
+            {% for num in page_range %}
                     {% if num == current %}
-                    <li class='active'><a href="?page={{num}}">{{num}}</a></li>
+                    <li class='active'><span>{{num}}</span></li>
                     {% else %}
-                    <li><a href="?page={{num}}">{{num}}</a></li>
+                        {% if num == '...'%}
+                        <li><span>{{num}}</span></li>
+                        {% else%}
+                        <li><a href="?page={{num}}">{{num}}</a></li>
+                        {% endif %}
                     {% endif %}
             {% endfor %}
              {# 判断是否有上一页#}
