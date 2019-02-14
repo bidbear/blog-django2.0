@@ -1,5 +1,10 @@
 # blog-django2.0
 ## 按照b站上教程做的博客网站 [网址](https://space.bilibili.com/252028233?spm_id_from=333.788.b_765f7570696e666f.2)
+###快速导出和安装依赖模块 
+```
+pip freeze > piplist.text   导出到文本
+pip install -r piplist.text    安装模块
+```
 > ### 分页的实现
 > * 分页效果用的django2.0自带的 分页器。使用的话可以问度娘
 > * 分页的视图层地址 [链接](https://github.com/bidbear/blog-django2.0/blob/master/mysite/blog/views.py)
@@ -27,4 +32,40 @@
     # object_list           分页之后的数据列表
     # number                当前页
     # paginator             paginator对象
+```
+### 配置后台富文本编辑器
+> * 安装富文本编辑器应用 `pip install django-ckeditor`
+> * 注册ckeditor应用
+> * 修改model 
+   ```
+    from ckeditor.fields import RichTextField
+    content = RichTextField()
+   ```
+> * 启动后台发现是繁体字，修改 setting `LANGUAGE_CODE = 'zh-hans'`
+> #### 富文本上传图片
+> *  安装图片处理依赖 `pip install pillow`
+> * 注册ckeditor_uploader应用
+> * 配置settings 
+```
+    MEDIA_URL = '/media/'
+    # 放在django项目根目录，同时也需要创建media文件夹
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+    CKEDITOR_UPLOAD_PATH = 'upload/'
+```
+> * 配置上传url和media的访问,打开全局url.py 
+```
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    另外，上传的图片是到media中，不是在static中。我们还需要设置media可被访问，如下设置可用于开发中使用，若部署到服务器可用服务器软件设置：
+    from django.conf import settings
+    from django.conf.urls.static import static
+    ...
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+```
+> * 修改model 
+```
+  from ckeditor_uploader.fields import RichTextUploadingField
+  ...
+  content = RichTextUploadingField()
+  
 ```
