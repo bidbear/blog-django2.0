@@ -1,5 +1,6 @@
 from django.shortcuts import render_to_response,get_object_or_404
 from django.core.paginator import Paginator #导入分页器
+from django.db.models import Count #导入统计模块
 from .models import Blog,BlogType
 
 # Create your views here.
@@ -25,11 +26,14 @@ def blog_list(request):
         page_range.insert(0,1)
     if page_range[-1] != all_page_num:
         page_range.append(all_page_num)
+    #显示所有分类
+    blog_types = BlogType.objects.all().annotate(num_blogs=Count('blog')) #使用annotate,给BLogType,添加统计字段
 
     content = {}
     content['blogs'] = page_list
     content['current'] = int(current_page)   #需要把接受到的page的值转换为int类型
     content['page_range'] = page_range
+    content['blog_types'] = blog_types
     return render_to_response('blog/blog_list.html',content)
 
 def blog_details(request,blog_id):

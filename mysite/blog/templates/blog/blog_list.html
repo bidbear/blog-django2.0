@@ -77,7 +77,20 @@
       </div>
         
    </div>
-  
+   <div class="col-xs-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    博客分类
+                    
+                </h3>
+            </div>
+            <div class="panel-body">
+                {% for blog_type in blog_types %}
+                    <P>{{blog_type.type_name}}({{blog_type.num_blogs}})</P>
+                {% endfor %}
+            </div>
+   </div>
 </div>
   </div>
 
