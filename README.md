@@ -38,6 +38,7 @@
    ```
 > * 启动后台发现是繁体字，修改 setting `LANGUAGE_CODE = 'zh-hans'`
 > #### 富文本上传图片
+> *  安装图片处理依赖 `pip install pillow`
 > * 注册ckeditor_uploader应用
 > * 配置settings 
 ```
