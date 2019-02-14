@@ -29,6 +29,11 @@
     # paginator             paginator对象
 ```
 ### 配置后台富文本编辑器
-> 安装富文本编辑器应用 `pip install django-ckeditor`
-> 注册应用  在setting中注册
-> 修改model
+> * 安装富文本编辑器应用 `pip install django-ckeditor`
+> * 注册应用  在setting中注册
+> * 修改model 
+   ```
+    from ckeditor.fields import RichTextField
+    content = RichTextField()
+   ```
+> * 启动后台发现是繁体字，修改 setting `LANGUAGE_CODE = 'zh-hans'`
