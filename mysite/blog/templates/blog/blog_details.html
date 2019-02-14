@@ -7,7 +7,7 @@
 {% block content%}
     <h2>{{blog.title}}</h2>
     <h4>{{blog.last_updated_time}}</h4>
-    <P>{{blog.content}}</P>   
+    <P>{{blog.content|safe}}</P>   
 {% endblock%}
 
 <!-- <!DOCTYPE html>
