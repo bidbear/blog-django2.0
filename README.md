@@ -28,3 +28,7 @@
     # number                当前页
     # paginator             paginator对象
 ```
+### 配置后台富文本编辑器
+> 安装富文本编辑器应用 `pip install django-ckeditor`
+> 注册应用  在setting中注册
+> 修改model
