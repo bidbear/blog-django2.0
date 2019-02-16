@@ -7,18 +7,6 @@
 {% block content%}
     <h2>{{blog.title}}</h2>
     <h4>{{blog.last_updated_time}}</h4>
+    <h5>阅读次数{{blog.rend_num}}</h5>
     <P>{{blog.content|safe}}</P>   
 {% endblock%}
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>{{blog.title}}</title>
-</head>
-<body>
-     <p style='float: right;'><a href="{% url 'blog:blog_list' %}">博客首页</a></p>
-    <h2>{{blog.title}}</h2>
-    <h4>{{blog.last_updated_time}}</h4>
-    <P>{{blog.content}}</P>
-</body>
-</html> -->

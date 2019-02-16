@@ -37,9 +37,17 @@ def blog_list(request):
     return render_to_response('blog/blog_list.html',content)
 
 def blog_details(request,blog_id):
+    blog_one = get_object_or_404(Blog,pk=blog_id)
+    if not request.COOKIES.get('blog_red_%d' % blog_one.pk):
+        blog_one.rend_num +=1
+        blog_one.save()
     content={}
-    content['blog']=get_object_or_404(Blog,pk=blog_id)
-    return render_to_response('blog/blog_details.html',content)
+    content['blog'] = blog_one
+    # print(blog_one.rend_num)
+    response = render_to_response('blog/blog_details.html',content)
+    response.set_cookie('blog_red_%d' % blog_one.pk,True)
+    return response
+
 def blog_type(request,blog_type_id):
     content={}
     Blog_type = get_object_or_404(BlogType,pk=blog_type_id)
